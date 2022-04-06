@@ -65,13 +65,13 @@ pipeline {
     }
     stage('Code Analysis') {
    	 	environment {
-       		 scannerHome = tool 'sonarqube-1'
+       		 scannerHome = tool 'sonar_home'
        		  ORGANIZATION = "spring-mvc-jenkins-dev"
-   			  PROJECT_NAME = "sonaruser"
+   			  PROJECT_NAME = "sonar1"
     	}
       steps {
-      withSonarQubeEnv('sonarqube-1') {
-    			sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonaruser -Dsonar.java.binaries=target/classes -Dsonar.sources=.
+      withSonarQubeEnv('sonar_home') {
+    			sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
     			'''
 		}
 		timeout(time: 5, unit: 'MINUTES') {
