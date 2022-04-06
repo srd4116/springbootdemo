@@ -71,7 +71,7 @@ pipeline {
     	}
       steps {
       withSonarQubeEnv('sonar_home') {
-    			sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
+    			sh ''' ${scannerHome}/bin/ -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
     			'''
 		}
 		timeout(time: 5, unit: 'MINUTES') {
