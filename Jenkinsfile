@@ -73,7 +73,7 @@ pipeline {
     			sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
     			'''
 		}
-		timeout(time: 5, unit: 'MINUTES') {
+		timeout(time: 15, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
         }
        echo "Code Analysis Done"
