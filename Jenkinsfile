@@ -19,12 +19,13 @@ pipeline {
      BUILDSERVER_WORKSPACE="${WORKSPACE}"	
     // BUILD_NO=sh(returnStdout:true,script:"echo ${GIT_BRANCH}_${BUILD_NUMBER} | sed 's/\\//_/g'").trim()
      
- }
+ 
 	NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "localhost:8081"
         NEXUS_REPOSITORY = "maven2_upload"
         NEXUS_CREDENTIAL_ID = "nexusjenkins"
+ }
   stages {  
    stage('JENKINS PATH') {  
       steps {
