@@ -75,16 +75,16 @@ pipeline {
        		 
     	}
       steps {
-      withSonarQubeEnv('sonarname') {
-    			sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
-    			'''
-		}
-		timeout(time: 15, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-       echo "Code Analysis Done"
+      //withSonarQubeEnv('sonarname') {
+    			//sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
+    			//'''
+		//}
+		//timeout(time: 15, unit: 'MINUTES') {
+            //waitForQualityGate abortPipeline: true
+       // }
+       //echo "Code Analysis Done"
       
-      }	 
+     // }	 
       
     }
     stage ('Archive artifacts for ServiceApp'){
