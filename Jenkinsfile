@@ -64,19 +64,22 @@ pipeline {
       }
     }
     stage('Code Analysis') {
-   	 
+               environment {
+       		 scannerHome = tool 'sonar_name'
+       		 
+    	}
       steps {
       withSonarQubeEnv('sonarname') {
-    		environment {
-       		 scannerHome = tool 'sonar_name'
-	      echo "sonar done"
+    			sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
+    			'''
 		}
 		timeout(time: 5, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
         }
        echo "Code Analysis Done"
       
-      }
+      }	 
+      
     }
     stage ('Archive artifacts for ServiceApp'){
           steps{
