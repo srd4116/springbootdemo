@@ -64,10 +64,7 @@ pipeline {
       }
     }
     stage('Code Analysis') {
-   	 	environment {
-       		 scannerHome = tool 'sonar_home'
-       		  
-    	}
+   	 	echo "Sonar analysis"
       steps {
       withSonarQubeEnv('sonarname') {
     		
