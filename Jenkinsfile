@@ -75,6 +75,7 @@ pipeline {
        		 
     	}
       steps {
+	      echo "Print Sonar Done"
       //withSonarQubeEnv('sonarname') {
     			//sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=sonar1 -Dsonar.java.binaries=target/classes -Dsonar.sources=.
     			//'''
