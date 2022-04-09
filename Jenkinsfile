@@ -131,14 +131,14 @@ pipeline {
     changed {
       echo "Status Changed: [From: $currentBuild.previousBuild.result, To: $currentBuild.result]"
     }
-    always {
-      script {
-        def result = currentBuild.result
-        if (result == null) {
-          result = "SUCCESS"
-        }
-      }
-    }
+    //always {
+      //script {
+        //def result = currentBuild.result
+        //if (result == null) {
+          //result = "SUCCESS"
+        //}
+      //}
+    //}
+  //}
   }
   }
-}
