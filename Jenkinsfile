@@ -91,19 +91,20 @@ pipeline {
     stage ('Archive artifacts for ServiceApp'){
           steps {
                 script {
-                    pom = readMavenPom file: "pom.xml";
-                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    artifactPath = filesByGlob[0].path;
-                    artifactExists = fileExists artifactPath;
-                    if(artifactExists) {
-                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                    //pom = readMavenPom file: "pom.xml";
+                    //filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    //echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    //artifactPath = filesByGlob[0].path;
+                   // artifactExists = fileExists artifactPath;
+                    //if(artifactExists) {
+                        //echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+			    echo "Artifactory upload to nexus";
                         nexusArtifactUploader(
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
-                            groupId: pom.groupId,
-                            version: pom.version,
+                            groupId: 'com.howtodoinjava.demo',
+                            version: '0.0.1-SNAPSHOT',
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
@@ -118,9 +119,9 @@ pipeline {
 				]
                             ]
                         );
-                    } else {
-                        error "*** File: ${artifactPath}, could not be found";
-                    }
+                    //} else {
+                        //error "*** File: ${artifactPath}, could not be found";
+                   // }
                 }
             }
         }
