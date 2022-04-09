@@ -89,42 +89,28 @@ pipeline {
       
     }
     stage ('Archive artifacts for ServiceApp'){
-          steps {
-                script {
-                    //pom = readMavenPom file: "pom.xml";
-                    //filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-                    //echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-                    //artifactPath = filesByGlob[0].path;
-                   // artifactExists = fileExists artifactPath;
-                    //if(artifactExists) {
-                        //echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-			    echo "Artifactory upload to nexus";
-                        nexusArtifactUploader(
-                            nexusVersion: NEXUS_VERSION,
-                            protocol: NEXUS_PROTOCOL,
-                            nexusUrl: NEXUS_URL,
-                            groupId: 'com.howtodoinjava.demo',
-                            version: '0.0.1-SNAPSHOT',
-                            repository: NEXUS_REPOSITORY,
-                            credentialsId: NEXUS_CREDENTIAL_ID,
-                            artifacts: [
-                                [artifactId: 'spring-mvc-jenkins',
-                                classifier: '',
-                                file: 'spring-mvc-jenkins.jar',
-                                type: 'jar'],
-                                [artifactId:'spring-mvc-jenkins',
-                                classifier: '',
-                                //file: "pom.xml",
-                                //type: "pom"
-				]
-                            ]
-                        );
-                    //} else {
-                        //error "*** File: ${artifactPath}, could not be found";
-                   // }
-                }
-            }
+     steps {
+          nexusArtifactUploader {
+             nexusVersion('nexus3')
+             protocol('http')
+             nexusUrl('localhost:8081/nexus')
+        groupId('com.howtodoinjava.demo')
+        version('0.0.1-SNAPSHOT')
+        repository('maven2_upload')
+        credentialsId('nexusjenkins')
+        artifact {
+            artifactId('spring-mvc-jenkins')
+            type('jar')
+            classifier('debug')
+            file('spring-mvc-jenkins.jar')
         }
+        artifact {
+            artifactId('spring-mvc-jenkins')
+            type('hpi')
+            classifier('debug')
+            file('spring-mvc-jenkins.hpi')
+        }
+    }
     }
     }
     stage('Deploy') {
