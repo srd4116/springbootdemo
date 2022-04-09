@@ -64,7 +64,7 @@ pipeline {
       }
     }
     stage('Code Analysis') {
-   	 	echo "Sonar analysis"
+   	 
       steps {
       withSonarQubeEnv('sonarname') {
     		
