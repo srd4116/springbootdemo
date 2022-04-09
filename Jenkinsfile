@@ -86,7 +86,7 @@ pipeline {
        //echo "Code Analysis Done"
       
        }	 
-      
+     
     }
     stage ('Archive artifacts for ServiceApp'){
      steps {
@@ -139,6 +139,6 @@ pipeline {
         }
       }
     }
-  }
+  
 
 
