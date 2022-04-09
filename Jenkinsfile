@@ -66,11 +66,10 @@ pipeline {
     stage('Code Analysis') {
    	 	environment {
        		 scannerHome = tool 'sonar_home'
-       		  ORGANIZATION = "spring-mvc-jenkins-dev"
-   			  PROJECT_NAME = "sonar1"
+       		  
     	}
       steps {
-      withSonarQubeEnv('sonar_home') {
+      withSonarQubeEnv('sonarname') {
     		
 	      echo "sonar done"
 		}
