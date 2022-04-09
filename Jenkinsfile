@@ -67,7 +67,8 @@ pipeline {
    	 
       steps {
       withSonarQubeEnv('sonarname') {
-    		
+    		environment {
+       		 scannerHome = tool 'sonar_name'
 	      echo "sonar done"
 		}
 		timeout(time: 5, unit: 'MINUTES') {
