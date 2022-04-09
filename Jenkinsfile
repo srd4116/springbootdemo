@@ -107,14 +107,15 @@ pipeline {
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
-                                [artifactId: pom.artifactId,
+                                [artifactId: 'spring-mvc-jenkins',
                                 classifier: '',
-                                file: artifactPath,
-                                type: pom.packaging],
-                                [artifactId: pom.artifactId,
+                                file: 'spring-mvc-jenkins.jar',
+                                type: 'jar'],
+                                [artifactId:'spring-mvc-jenkins',
                                 classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
+                                //file: "pom.xml",
+                                //type: "pom"
+				]
                             ]
                         );
                     } else {
