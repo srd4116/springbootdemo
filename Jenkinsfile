@@ -89,9 +89,9 @@ pipeline {
      
     }
     stage ('Archive artifacts for ServiceApp'){
-     artifactId = readMavenPom().getArtifactId()
-        version = readMavenPom().getVersion()
-        groupId = readMavenPom().getGroupId()
+     artifactId = "springbootdemo"//pringbootdemoreadMavenPom().getArtifactId()
+        version = "0.0.1-SNAPSHOT"//readMavenPom().getVersion()
+        groupId = "om.howtodoinjava.demo"//readMavenPom().getGroupId()
         
         echo "*** File: ${artifactId}, ${version}, ${groupId}"
         nexusArtifactUploader (
