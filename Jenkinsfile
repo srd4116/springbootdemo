@@ -90,22 +90,22 @@ pipeline {
     }
     stage ('Archive artifacts for ServiceApp'){
 	    steps {
-     artifactId = "springbootdemo"//pringbootdemoreadMavenPom().getArtifactId()
-        version = "0.0.1-SNAPSHOT"//readMavenPom().getVersion()
-        groupId = "om.howtodoinjava.demo"//readMavenPom().getGroupId()
+      // artifactId = "springbootdemo"//pringbootdemoreadMavenPom().getArtifactId()
+      //version = "0.0.1-SNAPSHOT"//readMavenPom().getVersion()
+       // groupId = "com.howtodoinjava.demo"//readMavenPom().getGroupId()
         
-        echo "*** File: ${artifactId}, ${version}, ${groupId}"
+       // echo "*** File: springbootdemo}, ${version}, ${groupId}"
         nexusArtifactUploader (
             nexusVersion: 'nexus3', 
             protocol: 'http', 
             nexusUrl: 'localhost:8081', 
-            groupId: "${groupId}", 
-            version: "${version}", 
+            groupId: "com.howtodoinjava.demo", 
+            version: "0.0.1-SNAPSHOT", 
             repository: 'maven2_upload', 
             credentialsId: 'nexusjenkins', 
             artifacts: [
-                [artifactId: "${artifactId}",  classifier: '', file: "target/${artifactId}-${version}.jar", type: 'jar'],
-                [artifactId: "${artifactId}", classifier: '', file: 'pom.xml', type: 'pom']
+                [artifactId: "springbootdemo",  classifier: '', file: "target/springbootdemo-0.0.1-SNAPSHOT.jar", type: 'jar'],
+                [artifactId: "springbootdemo", classifier: '', file: 'pom.xml', type: 'pom']
             ]
         )
 	 }
