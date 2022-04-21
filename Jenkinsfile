@@ -104,8 +104,8 @@ pipeline {
             repository: 'maven2_upload', 
             credentialsId: 'nexusjenkins', 
             artifacts: [
-                [artifactId: "springbootdemo",  classifier: '', file: "springbootdemo/target/springbootdemo-0.0.1-SNAPSHOT.jar", type: 'jar'],
-                [artifactId: "springbootdemo", classifier: '', file: 'pom.xml', type: 'pom']
+                [artifactId: "spring-mvc-jenkins",  classifier: '', file: "springbootdemo/target/spring-mvc-jenkins.war", type: 'war'],
+                [artifactId: "spring-mvc-jenkins", classifier: '', file: 'pom.xml', type: 'pom']
             ]
         )
 	 }
