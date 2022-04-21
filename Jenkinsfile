@@ -89,29 +89,25 @@ pipeline {
      
     }
     stage ('Archive artifacts for ServiceApp'){
-     steps {
-          nexusArtifactUploader {
-             nexusVersion('nexus3')
-             protocol('http')
-             nexusUrl('localhost:8081/nexus')
-        groupId('com.howtodoinjava.demo')
-        version('0.0.1-SNAPSHOT')
-        repository('maven2_upload')
-        credentialsId('nexusjenkins')
-        artifact {
-            artifactId('spring-mvc-jenkins')
-            type('jar')
-            classifier('debug')
-            file('spring-mvc-jenkins.jar')
-        }
-        artifact {
-            artifactId('spring-mvc-jenkins')
-            type('hpi')
-            classifier('debug')
-            file('spring-mvc-jenkins.hpi')
-        }
-    }
-    }
+     artifactId = readMavenPom().getArtifactId()
+        version = readMavenPom().getVersion()
+        groupId = readMavenPom().getGroupId()
+        
+        echo "*** File: ${artifactId}, ${version}, ${groupId}"
+        nexusArtifactUploader (
+            nexusVersion: 'nexus3', 
+            protocol: 'http', 
+            nexusUrl: 'localhost:8081', 
+            groupId: "${groupId}", 
+            version: "${version}", 
+            repository: 'maven2_upload', 
+            credentialsId: 'nexusjenkins', 
+            artifacts: [
+                [artifactId: "${artifactId}",  classifier: '', file: "target/${artifactId}-${version}.jar", type: 'jar'],
+                [artifactId: "${artifactId}", classifier: '', file: 'pom.xml', type: 'pom']
+            ]
+        )
+    
     }
     stage('Deploy') {
       steps {
