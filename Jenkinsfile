@@ -89,6 +89,7 @@ pipeline {
      
     }
     stage ('Archive artifacts for ServiceApp'){
+	    steps {
      artifactId = "springbootdemo"//pringbootdemoreadMavenPom().getArtifactId()
         version = "0.0.1-SNAPSHOT"//readMavenPom().getVersion()
         groupId = "om.howtodoinjava.demo"//readMavenPom().getGroupId()
@@ -107,7 +108,7 @@ pipeline {
                 [artifactId: "${artifactId}", classifier: '', file: 'pom.xml', type: 'pom']
             ]
         )
-    
+	 }
     }
     stage('Deploy') {
       steps {
