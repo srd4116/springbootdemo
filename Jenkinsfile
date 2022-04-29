@@ -119,7 +119,7 @@ REPOSITORY="maven2_upload"
 GROUP_ID="com.howtodoinjava.demo"
 ARTIFACT_ID="spring-mvc-jenkins"
 VERSION="0.0.1-SNAPSHOT"
-LOCAL_FILE="spring-mvc-jenkins.war"
+LOCAL_FILE="spring-mvc-jenkins"
 
 NEXUS_RESOLVE_URL="${NEXUS_BASE_URL}artifact/maven/resolve?g=${GROUP_ID}a=${ARTIFACT_ID}&r=${REPOSITORY}&v=${VERSION}"
 REPOSITORY_LOCAL_PATH='curl -s "${NEXUS_RESOLVE_URL}" | xmllint --xpath "//artifact-resolution/data/repositoryPath/text()" -'
