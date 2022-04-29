@@ -124,7 +124,7 @@ LOCAL_FILE="spring-mvc-jenkins"
 NEXUS_RESOLVE_URL="${NEXUS_BASE_URL}artifact/maven/resolve?g=${GROUP_ID}a=${ARTIFACT_ID}&r=${REPOSITORY}&v=${VERSION}"
 REPOSITORY_LOCAL_PATH='curl -s "${NEXUS_RESOLVE_URL}" | xmllint --xpath "//artifact-resolution/data/repositoryPath/text()" -'
 ARTIFACT_DOWNLOAD_URL="${NEXUS_BASE_URL}repositories/${REPOSITORY}/content${REPOSITORY_LOCAL_PATH}"
-sh script: 'curl -o "${LOCAL_FILE}" "${ARTIFACT_DOWNLOAD_URL}"'
+'curl -o "${LOCAL_FILE}" "${ARTIFACT_DOWNLOAD_URL}"'
 	      
 	      
       }
