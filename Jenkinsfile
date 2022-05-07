@@ -113,7 +113,7 @@ pipeline {
     stage('Deploy') {
       steps {
         echo "Deploy Done"
-       sh  'wget --user=admin --password=admin http://localhost:8081/repository/maven2_upload/com/howtodoinjava/demo/spring-mvc-jenkins/0.0.1-SNAPSHOT/spring-mvc-jenkins-0.0.1-20220421.154110-1.war'
+       sh  '/opt/homebrew/etc/wget --user=admin --password=admin http://localhost:8081/repository/maven2_upload/com/howtodoinjava/demo/spring-mvc-jenkins/0.0.1-SNAPSHOT/spring-mvc-jenkins-0.0.1-20220421.154110-1.war'
 	 sh 'pwd'
 	 sh 'ls -ltr'
       }
